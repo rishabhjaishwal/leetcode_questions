@@ -1,0 +1,31 @@
+  const length = isConnected[0].length;
+  for (let i = 0; i <= length - 1; i++) {
+    adjacencyList[i] = [];
+    for (let j = 0; j <= length - 1; j++) {
+      if (isConnected[i][j] && i != j) {
+        adjacencyList[i].push(j);
+      }
+    }
+  }
+  for(let k = 0 ; k < isConnected[0].length; k++) {
+    if(!visitedNode[k]) {
+    count++;
+    DFS(adjacencyList, visitedNode, k);
+    }
+  }
+
+  return count;
+};
+
+
+function DFS(adacencyList, visitedNode, k) {
+  if (!visitedNode[k]) {
+    visitedNode[k] = 1;
+  }
+  let length = adacencyList[k].length;
+  adacencyList[k].forEach(ele => {
+    if (!visitedNode[ele]) {
+      DFS(adacencyList, visitedNode, ele);
+    }
+  })
+}
